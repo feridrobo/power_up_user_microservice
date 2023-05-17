@@ -38,7 +38,7 @@ public class UserUseCase implements IUserServicePort {
     @Override
     public void saveOwner(User user) {
         UserServices.validateAge(user.getBirthdate());
-        Role role = new Role(OWNER_ROLE_ID, "ROLE_ADMIN", "ROLE_ADMIN");
+        Role role = new Role(OWNER_ROLE_ID, "ROLE_OWNER", "ROLE_OWNER");
         user.setRole(role);
         userPersistencePort.saveUser(user);
     }
