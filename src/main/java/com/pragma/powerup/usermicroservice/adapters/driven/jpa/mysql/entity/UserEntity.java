@@ -34,6 +34,6 @@ public class UserEntity {
     private String dniNumber;
     private String password;
     @ManyToOne(optional = true)
-    @JoinColumn(name = "id_role")
+    @JoinColumn(name = "id_role", referencedColumnName = "id", nullable = false)
     private RoleEntity role;
 }

@@ -22,4 +22,5 @@ public class RoleMysqlAdapter implements IRolePersistencePort {
         }
         return roleEntityMapper.toRoleList(roleEntityList);
     }
+
 }

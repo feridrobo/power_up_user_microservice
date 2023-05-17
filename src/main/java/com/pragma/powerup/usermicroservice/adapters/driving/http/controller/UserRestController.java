@@ -24,16 +24,61 @@ import java.util.Map;
 public class UserRestController {
     private final IUserHandler personHandler;
 
-    @Operation(summary = "Add a new user",
+    @Operation(
+            summary = "Add a new user",
             responses = {
-                @ApiResponse(responseCode = "201", description = "Person created",
-                        content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Map"))),
-                @ApiResponse(responseCode = "409", description = "Person already exists",
-                        content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))})
+                    @ApiResponse(
+                            responseCode = "201",
+                            description = "Person created",
+                            content = @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(ref = "#/components/schemas/Map")
+                            )
+                    ),
+                    @ApiResponse(
+                            responseCode = "409",
+                            description = "Person already exists",
+                            content = @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(ref = "#/components/schemas/Error")
+                            )
+                    )
+            }
+    )
     @PostMapping
     public ResponseEntity<Map<String, String>> savePerson(@RequestBody UserRequestDto userRequestDto) {
         personHandler.saveUser(userRequestDto);
-        return ResponseEntity.status(HttpStatus.CREATED)
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
                 .body(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY, Constants.PERSON_CREATED_MESSAGE));
     }
+    @Operation(
+            summary = "Add a new Owner",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "201",
+                            description = "Owner created",
+                            content = @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(ref = "#/components/schemas/Map")
+                            )
+                    ),
+                    @ApiResponse(
+                            responseCode = "409",
+                            description = "Owner already exists",
+                            content = @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(ref = "#/components/schemas/Error")
+                            )
+                    )
+            }
+    )
+    @PostMapping("/owner/")
+    public ResponseEntity<Map<String, String>> saveOwner(@RequestBody UserRequestDto userRequestDto) {
+        personHandler.saveOwner(userRequestDto);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY, Constants.PERSON_CREATED_MESSAGE));
+    }
+
 }
