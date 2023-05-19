@@ -26,6 +26,7 @@ public class BeanConfiguration {
     private final IUserEntityMapper userEntityMapper;
     private final PasswordEncoder passwordEncoder;
 
+
     @Bean
     public IRoleServicePort roleServicePort() {
         return new RoleUseCase(rolePersistencePort());
@@ -36,7 +37,7 @@ public class BeanConfiguration {
     }
     @Bean
     public IUserPersistencePort userPersistencePort() {
-        return new UserMysqlAdapter(userRepository, userEntityMapper, passwordEncoder,roleRepository);
+        return new UserMysqlAdapter(userRepository, userEntityMapper, passwordEncoder);
     }
     @Bean
     public IUserServicePort userServicePort() {

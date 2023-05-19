@@ -1,5 +1,7 @@
 package com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.adapter;
 
+
+import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.exceptions.RoleNotFoundException;
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.repositories.IRoleRepository;
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.entity.RoleEntity;
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.exceptions.NoDataFoundException;
@@ -23,4 +25,9 @@ public class RoleMysqlAdapter implements IRolePersistencePort {
         return roleEntityMapper.toRoleList(roleEntityList);
     }
 
+    @Override
+    public RoleEntity getRoleById(Long id){
+        RoleEntity roleEntity = roleRepository.findRoleById(id).orElseThrow(RoleNotFoundException::new);
+        return roleEntity;
+    }
 }

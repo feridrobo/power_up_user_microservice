@@ -1,5 +1,6 @@
 package com.pragma.powerup.usermicroservice.adapters.driving.http.handlers.impl;
 
+import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.entity.RoleEntity;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.response.RoleResponseDto;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.handlers.IRoleHandler;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.mapper.IRoleResponseMapper;
@@ -18,5 +19,10 @@ public class RoleHandlerImpl implements IRoleHandler {
     @Override
     public List<RoleResponseDto> getAllRoles() {
         return roleResponseMapper.toResponseList(roleServicePort.getAllRoles());
+    }
+
+    @Override
+    public RoleResponseDto  roleEntitytoRespDto(RoleEntity rolEntity) {
+        return roleResponseMapper.mapToDto(rolEntity);
     }
 }
