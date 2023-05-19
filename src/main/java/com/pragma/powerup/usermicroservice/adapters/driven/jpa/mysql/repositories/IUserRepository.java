@@ -7,6 +7,7 @@ import java.util.Optional;
 
 public interface IUserRepository extends JpaRepository<UserEntity, Long> {
     Optional<UserEntity> findByDniNumber(String dniNumber);
+    Optional<UserEntity>findUserByIdAndRoleId(Long id, Long idRole);
 
     Boolean existsByDniNumber(String dniNumber);
 
